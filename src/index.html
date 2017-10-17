@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width">
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<title>7km</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css"/>
+	<!--[if lt IE 9]><script src="js/libs/html5.js?ver1.0"></script><![endif]-->
+	<script>
+
+		function displayCatalog() {
+			var mainMenu = document.getElementById("katalog");
+			if (window.innerWidth > 768 ) mainMenu.style.display = 'flex';
+			else mainMenu.style.display = 'none';
+		}
+		document.addEventListener("DOMContentLoaded", displayCatalog)
+		window.addEventListener("resize", displayCatalog)
+		
+	</script>
+</head>
+<body>
+
+	<div class="md-modal" id="login-modal">
+		<div class="md-content">
+			<h3 class="md-content__heading">Авторизация</h3>
+			<!-- <form name="loginform" id="loginform"> -->
+				<input type="email" placeholder="E-mail" class="md-content__mail">
+				<input type="password" placeholder="Пароль" class="md-content__pass">
+				<button class="md-content__btn btn enter-btn">Войти</button>
+			<!-- </form> -->
+			<div class="md-content__more">
+				<a href="#" class="md-content__forgot">Забыл пароль?</a>
+				<a href="#" class="md-content__reg">Регистрация</a>
+			</div>
+			<div class="md-content__or"><span>или</span></div>
+			<hr>
+			<div class="md-content__social">
+				<button class="md-content__social__fb"><i class="md-content__social__fb__icon fa fa-facebook"></i>Facebook</button>
+				<button class="md-content__social__vk"><i class="md-content__social__vk__icon fa fa-vk"></i>Vkontakte</button>
+			</div>
+			<div class="md-close md-content__close">
+				<i class="fa fa-times"></i>
+			</div>
+		</div>
+	</div>
+
+	<div class="md-overlay"></div>
+
+		<!-- HEADER -->
+
+			//= ./templates/_header.html
+
+		<!-- HEADER END -->
+
+		<!-- CONTENT -->
+			
+			//= ./templates/_content.html
+
+		<!-- CONTENT END -->
+
+		<!-- FOOTER -->
+
+			//= ./templates/_footer.html
+
+		<!-- FOOTER END -->
+
+	<script type="text/javascript" src="./js/libs/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="./js/libs/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="./js/libs/tooltipster.bundle.min.js"></script>
+	<script type="text/javascript" src="./js/libs/slick.min.js"></script>
+	<script type="text/javascript" src="./js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1324 @@
+@import mixins
+@import fonts
+@import vars
+@import "./libs/font-awesome.min"
+@import "./libs/tooltipster.bundle.min"
+@import "./libs/tooltipster-sideTip-shadow.min"
+@import smartgrid
+@import sprites
+@import './libs/slick'
+
+
++reset()
+
+body
+	font-family: $main-font
+	font-size: 16px
+	background-color: #f3f3f1
+	position: relative
+
+h1,h2,h3,h4,h5
+	font-family: $header-font
+	color: $header-color
+	font-weight: 900
+	font-size: 24px
+	text-transform: uppercase
+	+xs(text-align, center)
+
+/* 1. MAIN ================== */
+
+// .debug
+// 	z-index: -1
+// 	+debug(rgba(0,0,0,0.1), 1px solid rgba(0,0,0,0.2))
+
+.wrapper
+	+wrapper()
+
+
+/* 2. BUTTON ================== */
+
+.btn
+	display: inline-block
+	vertical-align: middle
+	text-align: center
+	position: relative
+	min-height: 40px
+	touch-action: manipulation
+	cursor: pointer
+	border: 2px solid transparent
+	border-radius: 5px
+	font-size: 14px
+	text-decoration: none
+	outline: none
+	transition: all 0.2s ease
+	&:hover
+		background-color: transparent
+	&:active.btn:hover,
+	&:active
+		border: 2px solid transparent
+
+/* 3. FORM ================== */
+
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="email"],
+textarea
+	height: 40px
+	// font: normal 14px/14px Arial, sans-serif
+	color: #000
+	background: #fff 
+	border: 1px solid transparent0
+	&.form-control
+		display: block
+		width: 100%
+
+textarea
+	resize: none 
+	height: auto
+	min-height: 100px
+	padding-top: 10px
+
+*
+	box-sizing: border-box
+
+hr
+	border: none;
+	margin: 0
+	border-bottom: 1px solid #ddd
+
+/* 4. HEADER ================== */
+.header 
+	position: relative
+	overflow: hidden
+	&-bg
+			background-image: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.4) 100%), url("../img/header-background.png")
+			background-position: center
+			background-size: cover
+			background-repeat: no-repeat
+			filter: blur(2px)
+			position: absolute
+			height: 100%
+			width: 102%
+			left: -1%
+			z-index: -1
+	&-top
+		background-color: #FFF
+		&__wrap
+			display: flex
+			justify-content: space-between
+			padding-top: 25px
+			padding-bottom: 25px
+			align-items: center
+			+xs(padding-top, 15px)
+			+xs(padding-bottom, 15px)
+		&__devider
+			width: 1px
+			background-color: #D4D9DC
+			height: 40px
+			margin: 0 10px
+			+md(display, none)
+		&__logo
+			text-decoration: none
+			+xs(margin-left, -5px)
+			&__title
+				color: #202020
+				font-size: 18px
+				text-transform: uppercase
+				white-space: nowrap
+				+xs(font-size, 14px)
+				+xs(line-height, 8px)
+				+xs(letter-spacing, -0.4px)
+			&__subtitle
+				color: #83929d
+				font-weight: 400
+				font-size: 12px
+				+xs(font-size, 10px)
+		&__exchange
+			white-space: nowrap
+			+md(display, none)
+			.exchange
+				&__title
+					display: inline-block
+					margin-right: 25px
+					&__date
+						color: #83929d
+						font-size: 10px
+				&__block
+					display: inline-block
+					label
+						cursor: pointer
+						font-size: 12px
+						padding: 3px 3px 0px
+						border-bottom: 1px dotted #000
+					input[type=radio]
+						position: absolute
+						visibility: hidden
+						display: none
+					input[type=radio]:checked + label
+						background: $second-color
+						padding: 3px 3px 2px
+						border-radius: 5px
+						border-bottom: none
+					&__values
+						.low, 
+						.high
+							font-size: 12px
+							font-weight: 700
+							color: #000
+						.low:after,
+						.high:after
+							content: ""
+							position: relative
+							margin: 3px
+						.low:after
+							+arr(8, 5, #ee2b2b, b)
+							top: 9px
+						.high:after
+							+arr(8, 5, #70af32, t)
+							top: -10px
+		&__phone
+			// margin: 0 auto
+			white-space: nowrap
+			+sm(display, none)
+			&__icon
+				top: 4px
+				margin-right: 10px
+				.fa-phone
+					font-size: 1.1em
+			&__number
+				font-size: 18px
+				cursor: pointer
+				text-decoration: none
+				color: #000
+				line-height: 10px
+				&:hover .fa-angle-down
+					color: $color
+			&__arrow
+				margin-left: 6px
+				color: #a7a7a7
+				font-size: 0.8em
+				font-weight: 900
+			&__message
+				cursor: pointer
+				color: #000
+				font-size: 12px
+				text-decoration: none
+				border-bottom: 1px dotted #000
+		&__profile
+			text-align: right
+			white-space: nowrap
+			margin-left: 100px
+			+lg(margin-left, 0)
+			+xs(margin-right, -5px)
+			&__block
+				display: inline-block
+				margin-right: 20px
+				+xs(margin-right, 0)
+				&:hover 
+					.header-top__profile__name,
+					.header-top__profile__arrow
+						color: $color
+				&.open
+					& i.fa-angle-down
+						transform: rotate(180deg)
+			&__enter
+				display: inline-block
+				margin-right: 40px
+				padding: 6px 10px
+				cursor: pointer
+				transition: all 0.2s ease
+				+lg(margin-right, 20px)
+				+sm(margin-right, 0)
+				+xs(padding, 6px 0)
+				&:hover
+					color: $color
+				&__icon i
+					font-size: 27px
+					margin-right: 5px
+					vertical-align: middle
+				&__text
+					font-size: 14px
+					+xs(display, none)
+			&__photo
+				position: relative
+				img
+					vertical-align: middle
+			&__photo[data-badge]:after
+				content: attr(data-badge)
+				position: absolute
+				top: -14px
+				right: -5px
+				font-size: 12px
+				background-color: $second-color
+				color: #000
+				width: 21px
+				height: 21px
+				text-align: center
+				line-height: 22px
+				border-radius: 50%
+			&__name
+				margin-left: 15px
+				font-size: 14px
+				cursor: pointer
+				+lg(display, none)
+				+md(display, inline)
+				+sm(display, none)
+			&__arrow
+				margin-left: 6px
+				color: #a7a7a7
+				font-size: 1em
+				font-weight: 900
+				transition: all 0.4s ease
+			&__search
+				display: none
+				background-color: transparent
+				border: none
+				margin-right: 20px
+				cursor: pointer
+				+sm(display, inline-block)
+				+xs(margin-right, 0)
+				& span
+					font-size: 16px
+					& .fa-stack-1x
+						font-size: 17px
+						left: 1px
+			&__btn
+				color: #fff
+				background-color: $color
+				padding: 10px 20px
+				+sm(display, none)
+				&:hover
+					background-color: lighten( $color, 20% )
+					border-color: $color
+				&__min
+					display: none
+					background-color: $color
+					color: #fff
+					font-size: 30px
+					padding: 0 8px
+					+sm(display, inline-block)
+					&:hover
+						color: #000
+			&__icon
+				margin: -14px 8px 0px -8px
+				&__min
+					vertical-align: middle
+	&-banner
+		+sm(display, none)
+		&__content
+			position: relative
+			padding-top: 13vh
+			padding-bottom: 13vh
+		&__suptitle
+			font-size: 18px
+			font-weight: 300
+			color:#fff
+		&__title
+			font-size: 48px
+			color:#fff
+			text-transform: uppercase
+			letter-spacing: 2.4px
+			margin-bottom: 0
+		&__search-block
+			display: flex
+			margin: 30px 0 50px
+			.catalog-btn
+				text-transform: uppercase
+				color: #fff
+				padding: 0 15px
+				background-color: $color
+				max-width: 210px
+				width: 100%
+				font-weight: 900
+				font-family: $main-font
+				&:hover
+					background-color: transparent
+					border-color: $color
+				&__arrow
+					margin-left: 30px
+					font-size: 1.2em
+					font-weight: 900
+					transition: all 0.4s ease
+					float: right
+				&.open
+					& i.fa-angle-down
+						transform: rotate(180deg)
+			.inputs
+				margin: 0 7px
+				flex: 1 1 100%
+				display: inline-flex
+				&__goods-search
+					flex: 1 0 50px
+					min-width: 50px
+					position: relative
+					& input
+						border-radius: 5px 0 0 5px
+						height: 45px
+						padding-left: 45px
+						width: 100%
+						border-color: transparent
+						font-size: 14px
+					&__icon
+						position: absolute
+						top: 10px
+						left: 10px
+						color: #afafaf
+						& .fa-stack-2x
+							font-size: 25px
+						& .fa-search
+							top: -3px
+							left: 1px
+							font-size: 13px
+					&:hover .inputs__goods-search__icon
+						color: #888
+				&__map-search
+					position: relative
+					width: 0%
+					min-width: 170px
+					transition: all 0.6s ease
+					&__icon
+						position: absolute
+						top: 13px
+						left: 18px
+						color: #afafaf
+					& input
+						height: 45px
+						width: 100%
+						padding-left: 40px
+						border-radius: 0 5px 5px 0
+						border: none
+						border-left: 1px solid #afafaf
+						font-size: 14px
+					&:hover .inputs__map-search__icon
+						color: #888
+			.search-btn
+				background-color: $second-color
+				width: 126px
+				&:hover
+					color: #fff
+					background-color: transparent
+					border-color: $second-color
+		&__advantages
+			+row-flex()
+			.item
+				+col()
+				+size(3)
+				+md(padding-right, 20px)
+				padding-right: 50px
+				// flex: 1 1 210px
+				max-width: 230px
+				&__title
+					font-size: 16px
+					display: inline
+					font-weight: 900
+					color: #fff
+					text-decoration: none
+					cursor: pointer
+					padding-bottom: 3px
+					border-bottom: 1px solid $second-color
+					transition: all 0.2s ease-out
+					&:hover
+						color: $second-color
+						border-bottom: 1px solid transparent
+						padding-bottom: 8px
+				&__text
+					margin: 20px 0
+					font-size: 12px
+					font-weight: 300
+					color: #fff
+					line-height: 18px
+		&__footer
+			position: absolute
+			bottom: 24px
+			color: #fff
+			font-weight: 300
+			font-size: 12px
+			width: 97%
+			a
+				color: #fff
+				margin-right: 30px
+			.footnote
+				float: right
+				
+
+/* 5. CONTENT ================== */
+
+.content
+
+.main
+	&-menu
+	&-hot
+		background-color: #f7f7f7
+	&-hot,
+	&-products
+		padding: 40px 0 20px
+		&__group
+			+row-flex()
+			padding-top: 30px
+			flex-wrap: wrap
+			+lg(padding-top, 0)
+			& .main-products__items
+				+row-flex()
+				width: 80%
+				margin-left: 0px
+				margin-right: 0px
+				+lg(width, 100%)
+				+lg(display, block)
+				& .item__wrap
+					+col()
+					+size(3)
+					// +size-lg(2.4)
+					// +size-md(3)
+					// +size-sm(4)
+			& .main-products__banner
+				width: 20%
+				margin-left: 0px
+				margin-right: 0px
+				& .item__wrap
+					+col()
+					+size(12)
+		&__heading
+			margin-bottom: 20px
+		&__banner
+			+lg(display, none)
+			+row-flex()
+		&__items,
+		&__banner
+			margin: 0 -15px
+			& .item__banner1,
+			& .item__banner2
+				border-radius: 5px
+				text-align: center
+				min-height: 300px
+				& .product__image
+					& a
+						display: block
+				& .product__btn:hover
+							color: #fff
+							background-color: transparent
+							border-color: $second-color
+			& .item__banner1
+				background-color: #435aaa
+				box-shadow: 1px 3px 7px rgba(0, 0, 1, 0.19)
+				& .product
+					&__title
+						font-weight: 700
+						color: $second-color
+						font-size: 34px
+					&__price
+						color: #fff
+						font-size: 14px
+					&__btn
+						background-color: $second-color
+						width: 73%
+						font-size: 14px
+						font-weight: 600
+						margin-top: 5px
+			& .item__banner2
+				background-color: #0b0c06
+				box-shadow: 1px 3px 7px rgba(0, 0, 1, 0.19)
+				& .product
+					&__details
+						text-align: start
+						position: absolute
+						width: 100%
+						bottom: 0
+						padding: 15px 30px
+					&__title
+						font-weight: 700
+						color: $second-color
+						font-size: 24px
+						margin-bottom: 25px
+					&__price
+						color: #fff
+						font-size: 14px
+					&__btn
+						background-color: $second-color
+						width: 100%
+						font-size: 14px
+						font-weight: 600
+						margin-top: 20%
+			& .item
+				background-color: #fff
+				border-radius: 5px
+				text-align: center
+				box-shadow: 1px 3px 7px rgba(0, 0, 1, 0.19)
+				&__wrap
+					+col()
+					position: relative
+					margin-bottom: 55px
+					height: 300px
+					outline: none
+					transform: none
+					// min-width: 216px
+					&:hover
+						z-index: 10
+						.item__btn
+							display: inline-block
+						.item__show-tel
+							display: inline-block
+						.item__image a img
+							transform: scale(1.15)
+				&[data-badge]:after
+					content: attr(data-badge)
+					position: absolute
+					background-image: url(../img/product-hot-badge.png)
+					background-repeat: no-repeat
+					width: 57px
+					height: 92px
+					top: -30px
+					right: -10px
+					font-weight: 900
+					color: #fff
+					padding: 55px 0 0 2px
+				&__image
+					overflow: hidden
+					height: 228px
+					display: table
+					margin: auto
+					& a
+						display: table-cell
+						vertical-align: middle
+						outline: none
+						img
+							transition: all 0.4s ease
+				&__details
+					z-index: 2
+					padding: 0 5px 10px
+				&__title
+					font-size: 14px
+					color: #3c3c3c
+					line-height: 18px
+					height: 2.6em
+					display: inline-block
+					overflow: hidden
+					text-overflow: ellipsis
+					text-decoration: none
+					&:hover
+						font-weight: 600
+				&__price
+					font-size: 14px
+					margin-top: 5px
+					&__new
+						display: inline-block
+						color: #d9221c
+						font-size: 14px
+					&__old
+						display: inline-block
+						color: #969696
+						font-size: 12px
+						text-decoration: line-through
+				&__btn
+					display: none
+					font-size: 14px
+					font-weight: 600
+					margin-top: 20px
+					padding: 10px
+					background-color: $second-color
+					letter-spacing: -0.4px
+					&:hover
+						background-color: lighten( $second-color, 10% )
+						border-color: $second-color
+				&__show-tel
+					display: none
+					font-size: 12px
+					border-bottom: 1px dotted #000
+					cursor: pointer
+	&-products
+		&__options
+			margin: 10px 0
+			
+			+sm(text-align, center)
+		&__option
+			display: inline-block
+			margin: 0 15px
+			+sm(display, block)
+			+sm(margin, 0)
+			&:first-child
+				margin-left: 0
+			&.selected .main-products__option__content
+				border-radius: 5px
+				background-color: #d8e0e7
+				border-color: transparent
+				& h2
+					border-bottom: 1px dashed transparent
+			&__content
+				display: inline-block
+				padding: 15px
+				border: 1px solid transparent
+				transition: all 0.6s ease
+				cursor: pointer
+				padding-bottom: 13px
+				&:hover	
+					border-color: #3c3c47
+					border-radius: 5px
+					& h2
+						border-bottom: 1px dashed transparent
+				& h2
+						font-size: 18px
+						border-bottom: 1px dashed #3c3c47
+						transition: all 0.6s ease
+		&__show-more
+			text-align: center
+			margin-top: 20px
+			&__btn
+				background-color: transparent
+				border: 1px solid #a7a7a7
+				height: 50px
+				width: 240px
+				&:hover
+					background-color: $second-color
+					border: 1px solid transparent
+	&-shops
+		&__block
+			+row-flex()
+			margin-top: 30px
+			margin-bottom: 30px
+			flex-wrap: wrap
+			+xs(display, block)
+			&__descr
+				+col()
+				+size(4.8)
+				+size-sm(12)
+				margin-bottom: 40px
+				& .descr
+					&__heading
+					&__text
+						margin: 30px 20px 50px 0
+						color: #363636
+						font-size: 14px
+						line-height: 25px
+						+sm(margin, 10px 0px 20px)
+					&__btn
+						color: #fff
+						background-color: $color
+						padding: 10px 20px
+						height: 48px
+						font-weight: 300
+						&:hover
+							background-color: lighten( $color, 10% )
+							border-color: $color
+						&__icon
+							margin: -12px 5px 0px -6px
+			&__shops
+				+col()
+				+size(7.2)
+				& .shops
+					&__list
+						+row-flex()
+						+sm(display, block)
+						&__item
+							+col()
+							+size(4)
+							margin-bottom: 45px
+							height: 130px
+							background-color: #fff
+							border-radius: 5px
+							display: table
+							box-shadow: 1px 3px 7px rgba(0, 0, 1, 0.19)
+							position: relative
+							+sm(height, 50px)
+							+sm(width, 100%)
+							+sm(box-shadow, none)
+							+sm(background-color, transparent)
+							+sm(margin-bottom, 0)
+
+							& .item
+								&__img
+									text-align: center
+									display: table-cell
+									vertical-align: middle
+									+sm(display, none)
+									& img
+							&[data-badge]:before
+								content: attr(data-badge)
+								position: absolute
+								top: -8px
+								right: -8px
+								font-size: 18px
+								font-weight: 900
+								background-color: $color
+								color: #fff
+								width: 43px
+								height: 43px
+								text-align: center
+								line-height: 45px
+								border-radius: 50%
+								+sm(top, -10px)
+								+sm(right, unset)
+								
+							&[data-name]:after
+								content: attr(data-name)
+								position: absolute
+								display: none
+								left: 65px
+								width: 100%
+								+sm(display, inline-block)
+	&-news
+		padding: 40px 0 75px
+		border: 1px 0 1px 0 #ccc
+		+sm(padding-bottom, 20px)
+		&__heading
+			margin-bottom: 15px
+			+clr()
+			&__title
+				display: inline-block
+				margin-bottom: 15px
+			&__all
+				float: right
+				font-size: 14px
+				text-decoration: none
+				color: #000
+				transition: all 0.2s
+				
+				&:hover
+					color: #efc70b
+					.main-news__heading__arrow
+						margin-right: -5px
+						margin-left: 15px
+			&__arrow
+				font-size: 12px
+				margin-left: 10px
+				color: #efc70b
+				transition: all 0.2s
+		&__articles
+			display: flex
+			flex-wrap: wrap
+			justify-content: space-between
+			& .article
+				flex-basis: 50%
+				+md(flex-basis, 100%)
+				flex-wrap: nowrap
+				margin-bottom: 30px
+				display: flex
+				&__img
+					flex: 0 0 50%
+					margin-right: 20px
+					border-radius: 5px
+					overflow: hidden
+					align-self: center
+					+md(flex-basis, auto)
+					+sm(display, none)
+				&:nth-child(even) .article__img
+					+md(order, 2)
+				&:nth-child(even)
+					+md(text-align, right)
+					+sm(text-align, left)
+				&__info
+					flex: 1 1 auto
+					padding-right: 20px
+					// display: inline-block
+					// max-width: 50%
+					// padding: 0 28px
+					// vertical-align: middle
+				&__title
+					font-size: 14px
+					color: #3c3c47
+					line-height: 25px
+					font-weight: 900
+					display: block
+					cursor: pointer
+					text-decoration: none
+				&__date
+					color: #868686
+					font-size: 12px
+					&__icon
+						margin-right: 8px
+						position: relative
+				&__text
+					color: #5a5959
+					font-size: 12px
+					line-height: 25px
+					text-overflow: ellipsis
+					overflow: hidden
+					height: 72px
+					margin-top: 20px
+	&-benefits
+		&__list
+			+row-flex()
+			justify-content: space-around
+			& .benefit__item
+				margin: 40px 0
+				text-align: center
+				+md(width, 50%)
+				+md(margin, 15px 0)
+				+xs(width, 100%)
+				&__img,
+				&__text
+					display: inline-block
+					vertical-align: middle
+				&__text
+					margin-left: 25px
+	&-map
+		background-image: url("../img/map.png")
+		background-position: center
+		height: 162px
+		position: relative
+		&__btn
+			background-color: $second-color
+			padding: 10px 20px
+			height: 48px
+			min-width: 264px
+			font-weight: 300
+			+absolute-center()
+			&:hover
+				background-color: lighten( $second-color, 10% )
+				border-color: $second-color	
+			&__icon
+				margin: -10px 15px 2px -4px
+	&-seo
+		padding: 60px 0
+		+sm(padding, 20px 0)
+		&__block
+			position: relative
+		&__info
+			display: inline-block
+			max-width: 80%
+			margin-right: 50px
+			+sm(max-width, 100%)
+			+sm(margin-right, 0)
+			&__title
+				color: #3c3c47
+				font-size: 14px
+				font-weight: 900
+			&__text
+				color: #8c8c8c
+				margin-top: 25px
+				font-size: 12px
+				font-weight: 400
+				line-height: 25px
+		&__facebook-btn
+			margin-top: 30px
+			height: 30px
+
+.logged
+	display: none
+
+.accordion
+	position: relative
+	width: 100%
+	padding: 40px 0
+	display: flex
+	flex-wrap: wrap
+	+xs(padding, 0)
+	// +sm(display, none)
+	&__submenu
+		padding: 15px 0
+		display: none
+		font-size: 14px
+		font-weight: 300
+		column-count: 3
+		width: 100%
+		background-color: #fff
+		line-height: 27px
+		+sm(column-count, 2)
+		+xs(column-count, 1)
+		& ul
+			padding-left: 45px
+			padding-right: 20px
+			+xs(padding-left, 15px)
+			a
+				text-decoration: none
+				color: #000
+				transition: all 0.2s ease
+				&:hover
+					text-decoration: underline
+					color: $color
+		.fa-li
+			font-size: 7px
+			color: #a7a7a7
+			top: 10px
+			left: -30px
+	&__item
+		height: 50px
+		// flex: 1 1 33%
+		width: 33%
+		padding: 0 30px
+		cursor: pointer
+		white-space: nowrap
+		transition: all 0.2s ease
+		+md(width, 50%)
+		+sm(width, 100%)
+		+xs(padding, 0)
+		&.open .sprite:before
+			content: ""
+			position: absolute
+			bottom: -13px
+			left: 20px
+			+arr(12, 5, #fff, t)
+		&:hover
+			color: $color
+		&__arrow
+			font-size: 10px
+			color: $color
+			margin-left: 10px
+			transition: all 0.4s ease
+		&.open
+			& i.fa-chevron-down
+				transform: rotate(180deg)
+
+#tooltip-menu .accordion__submenu
+	background-color: #f7f7f7
+
+.tooltip_template { display: none }
+
+.tooltip__phones__list
+	padding: 10px 25px
+	&__item a
+		text-decoration: none
+		font-size: 14px
+		font-weight: 300
+		color: #000
+		line-height: 28px
+		&:hover
+			color: $color
+
+.tooltip__profile__menu__list
+	overflow: hidden
+	border-radius: 5px
+	& li
+		padding: 6px 30px
+		&:hover
+			background-color: #f1f1f1
+		& a
+			text-decoration: none
+			color: #000
+			font-size: 14px
+		& .number
+			color: $color
+	&__btn
+		display: none
+		background-color: $color
+		width: 100%
+		color: #fff
+		+sm(display, inline-block)
+		&:hover
+			color: #000
+			border: 2px solid $color
+
+.md
+	&-modal
+		position: fixed
+		top: 50%
+		left: 50%
+		width: 100%
+		max-width: 363px
+		// min-width: 320px
+		height: auto
+		z-index: 10000
+		visibility: hidden
+		// backface-visibility: hidden
+		transform: translateX(-50%) translateY(-50%)
+	&-content
+		color: #868686
+		background: #fff
+		position: relative
+		border-radius: 5px
+		margin: 0 auto
+		padding: 30px 35px
+		transform: scale(0.7)
+		opacity: 0
+		transition: all 0.3s
+		text-align: center
+		&__heading
+			margin-bottom: 30px
+		&__close i.fa-times
+			top: 0
+			position: absolute
+			right: -35px
+			font-size: 2em
+			color: #fff
+			cursor: pointer
+			+xs(top, 5px)
+			+xs(right, 8px)
+			+xs(color, #faa)
+			&:hover
+				color: #faa
+		& input
+			width: 100%
+			height: 45px
+			margin-bottom: 10px
+			border-radius: 5px
+			padding: 18px
+			color: #868686
+			background-color: #f8f8f8
+			border: 1px solid transparent
+			transition: all 0.4s ease
+			font-size: 14px
+			&:active, &:focus
+				border: 1px solid #ddd
+				background-color: #eee
+				outline: none
+			&:hover
+				background-color: #eee
+		&__btn
+			width: 100%
+			color: #000
+			background-color: $second-color
+			&:hover
+				background-color: lighten( $second-color, 20% )
+				border-color: $second-color
+		&__more
+			margin-top: 10px
+			+clr()
+		&__forgot,
+		&__reg
+			color: #b8b8b8
+			font-size: 12px
+			&:hover
+				color: #878787
+				text-decoration: none
+		&__forgot
+			float: left
+		&__reg
+			float: right
+		&__or
+			position: relative
+			width: 100%
+			height: 50px
+			& span
+				position: absolute
+				bottom: -7px
+				background-color: #fff
+				padding: 0 10px
+				font-size: 12px
+				left: 42%
+		&__social
+			margin-top: 18px
+			&__fb,
+			&__vk
+				border: none
+				border-radius: 3px
+				padding: 8px 20px 8px 10px
+				color: #fff
+				cursor: pointer
+				transition: all 0.2s ease
+				&__icon
+					font-size: 1.4em
+					margin-top: -5px
+					margin-right: 10px
+					top: 2px
+					position: relative
+			&__fb
+				margin-right: 15px
+				background-color: #3b5998
+				&:hover
+					background-color: darken(#3b5998, 10%)
+			&__vk
+				background-color: #4c75a3
+				&:hover
+					background-color: darken(#4c75a3, 10%)
+	&-show
+		visibility: visible
+		&.md-modal .md-content
+			transform: scale(1)
+			opacity: 1
+		& ~ .md-overlay
+			opacity: 1
+			visibility: visible
+	&-overlay 
+    position: fixed
+    width: 100%
+    height: 100%
+    visibility: hidden
+    top: 0
+    left: 0
+    z-index: 9999
+    opacity: 0
+    background: rgba(0,0,0,0.7)
+    transition: all 0.3s
+
+.tooltipster-sidetip .tooltipster-content
+	color: #000
+	padding: 0
+	overflow: hidden
+
+#tooltip-menu.accordion
+	padding: 20px 0
+	color: #000
+	.accordion__item.open .sprite:before
+			content: ""
+			position: absolute
+			bottom: -13px
+			left: 20px
+			+arr(12, 5, #f7f7f7, t)
+
+.slick-slider .slick-list, .slick-slider .slick-track
+	transform: none
+
+.slick
+	&-list
+		padding: 30px 0
+		width: 100%
+		height: 100%
+		position: initial
+		z-index: 1
+	&-dots
+		display: none
+		position: absolute
+		bottom: 20px
+		width: 100%
+		text-align: center
+		+lg(display, block)
+		& li
+			position: relative
+			display: inline-block
+			margin: 0 5px
+			padding: 0
+			cursor: pointer
+			&.slick-active button:before
+				color: $color
+				font-size: 50px
+			& button
+				cursor: pointer
+				color: transparent
+				border: 0
+				outline: none
+				background: transparent
+				&:hover:before
+					color: $color
+				&:before
+					font-size: 40px
+					line-height: 20px
+					position: absolute
+					top: 0
+					left: 0
+					width: 20px
+					height: 20px
+					content: '•'
+					text-align: center
+					color: #ddd
+					
+
+/* 6. FOOTER ================== */
+
+.footer 
+	background-color: #1b1919
+	padding: 60px 0
+	&-block
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+		&__main
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between
+			margin-right: 5%
+			flex: 0 0 auto
+			+sm(margin, 0 10%)
+			+xs(margin, 0)
+			&__title
+					color: #999083
+					font-size: 18px
+			&__copy
+				color: #635f5f
+				margin: 20px 0
+				& .copyright
+					font-size: 12px
+					line-height: 14px
+					display: inline-block
+				& .socials
+					background-color: #474242
+					display: block
+					padding: 6px
+					text-align: center
+					border-radius: 5px
+					width: 32px
+					height: 32px
+					float: right
+					transition: all 0.2s ease
+					&:hover
+						background-color: $second-color
+						& .socials__icon
+							color: #3c3c47
+					&__icon
+						font-size: 14px
+						color: #9d9486
+						transition: all 0.2s ease
+			&__developer
+				&__name
+					color: #635f5f
+					font-size: 12px
+				&__logo
+					color: #635f5f
+		&__wrap
+			display: inline-flex
+			justify-content: space-between
+			flex: 1 1 auto
+			flex-wrap: wrap
+			margin: 0 auto
+			+md(max-width, 60%)
+			+sm(max-width, 80%)
+			+xs(max-width, 100%)
+		&__info
+			display: flex
+			justify-content: space-around
+			flex: 1 1 auto
+			+md(flex, 1 1 100%)
+			+md(margin-bottom, 20px)
+			+md(justify-content, space-between)
+			+sm(margin-top, 20px)
+			+xs(display, block)
+			&__list
+				& li
+					&	a
+						color: #9e9595
+						font-size: 14px
+						line-height: 24px
+						&:hover
+							color: $second-color
+							text-decoration: none
+		&__subs
+			flex: 1 1 10%
+			&__header
+				color: #7d7070
+				font-size: 14px
+				line-height: 24px
+				margin-bottom: 20px
+				display: block
+			&__form
+				position: relative
+				min-width: 300px
+				&:hover .form-input__icon
+					color: #bbb
+				& .form
+					&-input
+						border-radius: 5px
+						padding: 0 45px
+						width: 100%
+						background-color: #343030
+						border-color: transparent
+						transition: all 0.2s ease
+						color: #fff
+						font-size: 14px
+						&:focus,
+						&:active
+							outline: none
+							border: 1px solid $second-color
+						&__icon
+							position: absolute
+							color: #7d7070
+							top: 10px
+							left: 16px
+							transition: all 0.2s ease
+					&-btn
+						position: absolute
+						right: 0
+						top: 0
+						background-color: $second-color
+						padding: 0 12px
+						font-weight: 600
+						&:hover
+							color: #fff
+							background-color: transparent
+							border-color: $second-color
+
+						
+
+/* 7. MEDIA ================== */
+
+
+
+
+
